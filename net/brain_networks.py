@@ -36,7 +36,7 @@ class NNGAT_Net(torch.nn.Module):
         self.bn2 = torch.nn.BatchNorm1d(self.dim2)
         if self.poolmethod == 'topk':
             self.pool2 = TopKPooling(self.dim2, ratio=ratio, multiplier=1, nonlinearity=torch.sigmoid)
-        elif self.poo2method == 'sag':
+        elif self.poolmethod == 'sag':
             self.pool2 = SAGPooling(self.dim2, ratio=ratio, GNN=GATConv,nonlinearity=torch.sigmoid)
 
         self.fc1 = torch.nn.Linear((self.dim1+self.dim2)*2, self.dim2)
