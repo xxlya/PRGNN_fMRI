@@ -199,7 +199,7 @@ def train(epoch):
         s2_arr = np.hstack(s2_list)
 
         if not os.path.exists('outputs/'):
-            os.makedirs('ouputs/')
+            os.makedirs('outputs/')
         if epoch%5 == 0:
             dd.io.save(
                 'outputs/train_s1_{}_epoch{}_dist{}_cnsis{}_pool{}.h5'.format(opt.net, epoch, opt.lamb3, opt.lamb5,
