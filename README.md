@@ -12,4 +12,3 @@ install pytorch geometric 1.6.0 through https://pytorch-geometric.readthedocs.io
 ```
 python main.py --net ${GNN} 
 ```
-# PRGNN_fMRI
