@@ -1,10 +1,15 @@
 # PRGNN_fMRI
 
 ## Requirments 
+Installation 1:
 ```
 pip install -r requirements.txt
 ```
-install pytorch geometric 1.6.0 through https://pytorch-geometric.readthedocs.io/en/latest/_modules/torch_geometric/
+Installation 2:
+Install pytorch geometric 1.6.0 through
+```
+https://pytorch-geometric.readthedocs.io/en/latest/_modules/torch_geometric/
+```
 
 ## How to run the code ? 
 
