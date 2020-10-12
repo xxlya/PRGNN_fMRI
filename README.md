@@ -16,4 +16,4 @@ python main.py --net ${GNN} --dataroot ${YOUR_PROCCESSED_DATA_DIR}
 ```
 
 ## To Do
---[ ] Provide synthetic data.
+- [ ] Provide synthetic data.
