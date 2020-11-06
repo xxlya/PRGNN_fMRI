@@ -69,46 +69,6 @@ def count_parameters(model):
     #return sum(p.numel() for p in model.parameters() if p.requires_grad)
 
 
-def train_test_split(mat_dir, kfold = 5, fold = 0):
-    subjects = loadmat(mat_dir)
-    pat_id = list(subjects['subjects_pat'])
-    con_id = list(subjects['subjects_con'])
-    sub_list = pat_id + con_id
-    label = list(np.ones(len(pat_id)))+list(np.zeros(len(con_id)))
-    list1, list2 = (list(t) for t in zip(*sorted(zip(sub_list, label))))
-
-
-    x_ind = range(0, 118)
-    y_ind = np.array(list2)
-
-    skf = StratifiedKFold(n_splits=kfold, shuffle=True, random_state=7)
-    test_index = list()
-    train_index = list()
-    for a, b in skf.split(x_ind, y_ind):
-        test_index.append(b)
-        train_index.append(a)
-
-    train_id = train_index[fold]
-    test_id = test_index[fold]
-
-    tr_index = list()
-    te_index = list()
-    count = 0
-    for i in range(118):
-        if list2[i] ==1:
-            rep = 10
-        else:
-            rep = 20
-        ll = list(range(count,count+rep))
-        if i in train_id:
-            tr_index.append(ll)
-        else:
-            te_index.append(ll)
-        count = count + rep
-    tr_index = np.concatenate(tr_index)
-    te_index = np.concatenate(te_index)
-    return tr_index,te_index
-
 def train_test_split_noaug(mat_dir, kfold = 10, fold = 0):
     subjects = loadmat(mat_dir)
     pat_id = list(subjects['subjects_pat'])
@@ -118,7 +78,7 @@ def train_test_split_noaug(mat_dir, kfold = 10, fold = 0):
     list1, list2 = (list(t) for t in zip(*sorted(zip(sub_list, label))))
 
 
-    x_ind = range(0, 118)
+    x_ind = range(len(sub_list))
     y_ind = np.array(list2)
 
     skf = StratifiedKFold(n_splits=kfold, shuffle=True, random_state=7)
@@ -134,7 +94,7 @@ def train_test_split_noaug(mat_dir, kfold = 10, fold = 0):
     tr_index = list()
     te_index = list()
     count = 0
-    for i in range(118):
+    for i in range(len(sub_list)):
         if list2[i] ==1:
             rep = 1
         else:
@@ -187,11 +147,11 @@ def train_val_test_split(mat_dir, kfold = 5, fold = 0, rep=100):
     te_index = list()
     val_index = list()
     count = 0
-    for i in range(118):
+    for i in range(len(sub_list)):
         if list2[i] ==1:
             rep1 = rep
         else:
-            rep1 = rep*2
+            rep1 = rep
         ll = list(range(count,count+rep1))
         if i in train_id:
             tr_index.append(ll)
